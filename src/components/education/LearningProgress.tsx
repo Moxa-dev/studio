@@ -4,15 +4,17 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Trophy, Book, Star, Award } from 'lucide-react';
 import { oopConceptManager } from '@/lib/education/OOPConceptManager';
+import LearningProgressModal from '@/components/education/LearningProgressModal';
+import { Button } from '@/components/ui/button';
 
-const LearningProgress: React.FC = () => {
+const LearningProgress = () => {
   const progress = oopConceptManager.getOverallProgress();
   const concepts = oopConceptManager.getAllConcepts();
   const completedConcepts = concepts.filter(
     concept => oopConceptManager.getProgress(concept.id)?.completed
   );
 
-  const getDifficultyColor = (difficulty: string) => {
+  const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
       case 'beginner':
         return 'bg-green-500';
