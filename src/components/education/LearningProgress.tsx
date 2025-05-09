@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -6,15 +6,19 @@ import { Trophy, Book, Star, Award } from 'lucide-react';
 import { oopConceptManager } from '@/lib/education/OOPConceptManager';
 import LearningProgressModal from '@/components/education/LearningProgressModal';
 import { Button } from '@/components/ui/button';
+import OOPQuizModal from './OOPQuizModal';
 
-const LearningProgress = () => {
+interface LearningProgressProps {}
+
+const LearningProgress: React.FC<LearningProgressProps> = () => {
+  const [selectedConceptId, setSelectedConceptId] = useState<string | null>(null);
   const progress = oopConceptManager.getOverallProgress();
   const concepts = oopConceptManager.getAllConcepts();
   const completedConcepts = concepts.filter(
     concept => oopConceptManager.getProgress(concept.id)?.completed
   );
 
-  const getDifficultyColor = (difficulty) => {
+  const getDifficultyColor = (difficulty: string): string => {
     switch (difficulty) {
       case 'beginner':
         return 'bg-green-500';
@@ -25,6 +29,14 @@ const LearningProgress = () => {
       default:
         return 'bg-gray-500';
     }
+  };
+
+  const handleStartLearning = (conceptId: string): void => {
+    setSelectedConceptId(conceptId);
+  };
+
+  const handleQuizComplete = (): void => {
+    setSelectedConceptId(null);
   };
 
   return (
@@ -120,7 +132,11 @@ const LearningProgress = () => {
                       {concept.difficulty}
                     </Badge>
                   </div>
-                  <Button variant="outline" size="sm">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => handleStartLearning(concept.id)}
+                  >
                     Start Learning
                   </Button>
                 </div>
@@ -128,6 +144,15 @@ const LearningProgress = () => {
           </div>
         </CardContent>
       </Card>
+
+      {selectedConceptId && (
+        <OOPQuizModal
+          open={!!selectedConceptId}
+          conceptId={selectedConceptId}
+          onClose={handleQuizComplete}
+          onPass={handleQuizComplete}
+        />
+      )}
     </div>
   );
 };
