@@ -22,6 +22,7 @@ const GameScreen: React.FC = () => {
   const [levelProgress, setLevelProgress] = useState<string[]>(['level1']);
   const [learningMessage, setLearningMessage] = useState<string | null>(null);
   const [learningMessageIndex, setLearningMessageIndex] = useState<number>(0);
+  const [learningObjectives, setLearningObjectives] = useState<string[]>([]);
 
   // Predefined learning messages for different actions
   const movementLearningTips = [
@@ -59,6 +60,9 @@ const GameScreen: React.FC = () => {
     setMessage({ text: `Welcome to ${levelData.name}! Use controls to move and interact.`, type: 'info' });
     setGameOver(false);
     setCurrentLevelId(levelId);
+    
+    // Set learning objectives for the current level
+    setLearningObjectives(levelData.learningObjectives || []);
   }, []);
 
   const handleLevelComplete = useCallback(() => {
@@ -302,6 +306,21 @@ const GameScreen: React.FC = () => {
               </ul>
             )}
           </div>
+        {/* Learning Objectives Section */}
+        <div className="p-4 bg-card rounded-lg shadow-md">
+          <h3 className="text-lg font-semibold mb-2 text-card-foreground">🎓 Learning Objectives</h3>
+          {learningObjectives.length > 0 ? (
+            <ul className="list-disc list-inside text-sm text-muted-foreground">
+              {learningObjectives.map((objective, index) => (
+                <li key={index} className="mb-1">
+                  {objective}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted-foreground">No specific learning objectives for this level.</p>
+          )}
+        </div>
       </div>
     </div>
   );

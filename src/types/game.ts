@@ -1,4 +1,3 @@
-
 export interface Position {
   x: number;
   y: number;
@@ -76,4 +75,14 @@ export class Character {
   hasItem(itemName: string): WorldObject | undefined {
     return this.inventory.find(item => item.name.toLowerCase() === itemName.toLowerCase());
   }
+}
+
+export interface Level {
+  id: string;
+  name: string;
+  gridSize: { width: number; height: number };
+  playerStart: Position;
+  objects: WorldObject[];
+  goalMessage?: string;
+  learningObjectives?: string[]; // Add optional learning objectives
 }
