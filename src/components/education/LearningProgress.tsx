@@ -117,7 +117,6 @@ const LearningProgress: React.FC<LearningProgressProps> = () => {
           <div className="space-y-4">
             {concepts
               .filter(concept => !oopConceptManager.getProgress(concept.id)?.completed)
-              .slice(0, 3)
               .map(concept => (
                 <div
                   key={concept.id}

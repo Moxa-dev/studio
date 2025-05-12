@@ -6,7 +6,7 @@ const LearningProgressModal = ({ open, onClose }) => (
   <Dialog open={open} onOpenChange={onClose}>
     <DialogContent className="max-w-2xl">
       <DialogHeader>
-        <DialogTitle>Your OOP Learning Progress</DialogTitle>
+        <DialogTitle>Start your OOP Journey</DialogTitle>
       </DialogHeader>
       <LearningProgress />
     </DialogContent>
