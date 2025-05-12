@@ -1,4 +1,3 @@
-
 import type { WorldObject } from '@/types/game';
 import React from 'react';
 import { cn } from '@/lib/utils';
@@ -22,7 +21,7 @@ const GameObjectView: React.FC<GameObjectViewProps> = ({ object, isAdjacent, onI
               "absolute flex items-center justify-center text-xl md:text-2xl rounded-md transition-all duration-200",
               object.isInteractable ? "cursor-pointer hover:bg-accent/30" : "cursor-default",
               isAdjacent && object.isInteractable && "ring-2 ring-accent shadow-lg",
-              object.name === "Wall" ? "text-gray-500" : "bg-secondary text-secondary-foreground"
+              object.name === "Wall" ? "text-gray-500 bg-gray-100" : "bg-secondary text-secondary-foreground"
             )}
             style={{
               left: `calc(${object.position.x} * (100% / var(--grid-width)))`,

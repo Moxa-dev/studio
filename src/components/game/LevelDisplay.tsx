@@ -1,4 +1,3 @@
-
 import type { Character as CharacterType, WorldObject as WorldObjectType, Position } from '@/types/game';
 import React from 'react';
 import PlayerCharacterView from './PlayerCharacterView';
@@ -26,7 +25,7 @@ const LevelDisplay: React.FC<LevelDisplayProps> = ({
       gridCells.push(
         <div
           key={`cell-${x}-${y}`}
-          className="border border-primary/20"
+          className="border border-primary/20 bg-white/10"
           aria-hidden="true"
         />
       );
@@ -35,7 +34,7 @@ const LevelDisplay: React.FC<LevelDisplayProps> = ({
 
   return (
     <div
-      className="relative bg-primary/10 aspect-video w-full max-w-2xl mx-auto shadow-xl rounded-lg overflow-hidden border-2 border-primary"
+      className="relative bg-primary/5 aspect-video w-full max-w-2xl mx-auto shadow-xl rounded-lg overflow-hidden border-2 border-primary/20"
       style={{
         display: 'grid',
         gridTemplateColumns: `repeat(${gridSize.width}, 1fr)`,

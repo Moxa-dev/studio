@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google'; // Using Inter as a more common modern font
 import './globals.css';
@@ -26,6 +25,7 @@ export default function RootLayout({
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}
+        suppressHydrationWarning
       >
         {children}
       </body>
